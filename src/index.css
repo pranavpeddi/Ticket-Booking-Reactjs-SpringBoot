@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+.navBar
+{
+  background-color: brown;
+}

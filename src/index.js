@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter , Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import SaveMovie from './Components/Savemovie'
+import ShowMovies from './Components/ShowMovies';
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  <BrowserRouter>
+    <Route exact path="/" component={SaveMovie}></Route>
+    <Route path="/movieList" component={ShowMovies}></Route>
+  </BrowserRouter>,document.getElementById('root'))
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
