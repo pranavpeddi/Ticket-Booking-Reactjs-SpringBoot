@@ -37,11 +37,11 @@ public class BookingController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/bookticket/{moviename}/{seatNo}/{email}/{name}")
-    public ResponseEntity<String> bookTicket(@RequestParam String moviename,@RequestParam int seatNo,
-                                             @RequestParam  String email,@RequestParam String name)
+    @PostMapping("/bookticket/{mid}/{seatNo}/{email}/{name}")
+    public ResponseEntity<String> bookTicket(@PathVariable long mid,@PathVariable int seatNo,
+                                             @PathVariable  String email,@PathVariable String name)
     {
-        Optional<Movie> checkMovie= Optional.ofNullable(newService.findMovie(moviename));
+        Optional<Movie> checkMovie= Optional.ofNullable(newService.findMovie((mid));
        if(!checkMovie.isPresent())
        {
            return new ResponseEntity<>("movie is not available at this time",HttpStatus.BAD_REQUEST);
@@ -52,12 +52,12 @@ public class BookingController {
          {
             return new ResponseEntity<>("seat no u choose is already booked,please choose another",HttpStatus.BAD_REQUEST);
          }
-         if(newService.ticketsBookedinNo(moviename)>20)
+         if(newService.ticketsBookedinNo(mid)>20)
            {
                return new ResponseEntity<>("sorry its HouseFull",HttpStatus.BAD_REQUEST);
            }
 
-         newService.bookTicket(moviename,seatNo, name, email);
+         newService.bookTicket(mid,seatNo, name, email);
            return new ResponseEntity<String>("ticket is Booked", HttpStatus.OK);
 
        }
@@ -81,11 +81,11 @@ public class BookingController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/movie/getTickets/{movieName}")
+    @GetMapping("/movie/getTickets/{id}")
     @ResponseBody
-    public List<Map<String, Object>> getTicketsofMovie(@RequestParam String movieName)
+    public List<Map<String, Object>> getTicketsofMovie(@PathVariable long id)
     {
-        return newService.getMovieSeatNos(movieName);
+        return newService.getMovieSeatNos(id);
     }
 
 

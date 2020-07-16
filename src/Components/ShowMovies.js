@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {Table,Container} from 'react-bootstrap'
+import {Table,Container,Button} from 'react-bootstrap'
 import NavigationBar from "./NavigationBar"
 
 class ShowMovies extends Component
@@ -38,6 +38,7 @@ class ShowMovies extends Component
         <tr>
             <th>Movie Name</th>
             <th>Movie Running Time </th>
+            <th>Book Ticket</th>
         </tr>
 
     </thead>
@@ -46,6 +47,7 @@ class ShowMovies extends Component
                   <tr>
                     <td>{c.movie_name}</td>
                     <td>{c.movie_running_time}</td>
+                    <td><Link to={`/bookTicket/${c. m_id}`}><Button variant="primary" type="submit">Click to Book </Button></Link></td>
                   </tr>
                 )}
               </tbody>

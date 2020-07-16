@@ -34,11 +34,11 @@ public class NewService {
         movieRepository.save(movie);
     }
 
-    public void bookTicket(String movieName,int seatNo,String name,String email)
+    public void bookTicket(long id,int seatNo,String name,String email)
     {
 
 
-        Movie movie=movieRepository.findByMovieName(movieName);
+        Movie movie=movieRepository.findById(id);
 
         Ticket ticket = new Ticket();
         LocalDate date = LocalDate.now();
@@ -74,9 +74,9 @@ public class NewService {
         return (List<Ticket>)movie.getTickets();
     }
 
-    public Movie findMovie(String name)
+    public Movie findMovie(long id)
     {
-        return    movieRepository.findByMovieName(name);
+        return movieRepository.findById(id);
     }
 
     public Customer findCustomer(String name)
@@ -98,15 +98,15 @@ public class NewService {
         return true;
     }
 
-    public Integer ticketsBookedinNo(String movieName)
+    public Integer ticketsBookedinNo(long id)
     {
-        Movie movie=movieRepository.findByMovieName(movieName);
+        Movie movie=movieRepository.findById(id);
         return movie.getTickets().size();
     }
 
-    public List<Map<String,Object>> getMovieSeatNos(String movieName)
+    public List<Map<String,Object>> getMovieSeatNos(long id)
     {
-        Movie movie=movieRepository.findByMovieName(movieName);
+        Movie movie=movieRepository.findById(id);
         return ticketRepository.getTicketByMovie_MId(movie.getmId());
     }
 

@@ -40,11 +40,11 @@ class Savemovie extends React.Component{
         console.log(movieName+":"+movieRunningTime)
         return(
               
-            <Container c>
+            <Container >
             <NavigationBar/>
               
             <h3>Save Movie</h3>
-<Form onSubmit={this.onSubmit} className="mt-1">
+<Form style={{marginTop:5.00}} onSubmit={this.onSubmit} className="mt-1">
     <Form.Group controlId="formBasicEmail">
       <Form.Label aria-setsize="20">MovieName:</Form.Label>
       <Form.Control type="text" placeholder="Enter MovieName" name="movieName" value={movieName} onChange={this.onChange}/>
