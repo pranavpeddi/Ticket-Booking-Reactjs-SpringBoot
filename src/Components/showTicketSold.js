@@ -8,14 +8,21 @@ class ShowTickets extends React.Component
     {
         super(props);
         this.state={
-            seatsBooked:[]
+            seatsBooked:[],
+          
         };
+
     }
+
+
+  
+
 
     componentDidMount() {
         Axios.get('http://localhost:8080/movie/getTickets/'+this.props.id)
           .then(res => {
             this.setState({ seatsBooked: res.data });
+            console.log(res.data.seat_no)
             console.log(this.state.seatsBooked);
           });
       }
@@ -30,6 +37,7 @@ class ShowTickets extends React.Component
     <thead>
         <tr>
             <th>Seats which are Booked</th>
+           
        
         </tr>
 
@@ -40,6 +48,8 @@ class ShowTickets extends React.Component
                     <td>{c.seat_no}</td>
                   </tr>
                 )}
+                
+
               </tbody>
 
     </Table>

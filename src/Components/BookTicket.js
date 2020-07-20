@@ -1,10 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import axios from 'axios'
+
+import Axios from 'axios'
 import {Form,Button,Container,Row,Col} from 'react-bootstrap'
 import NavigationBar from './NavigationBar'
 import ShowTicketsBooked from './showTicketSold';
 import {Alert} from 'react-bootstrap'
+ 
 
 class ShowAlert extends React.Component
 {
@@ -45,6 +46,7 @@ class BookTicket extends React.Component{
          email:'',
          name:'',
          isBooked:''
+      
         };
         }
 
@@ -56,36 +58,58 @@ class BookTicket extends React.Component{
              this.setState(state);
         }
 
-        onSubmit=(e)=>
+   onSubmit=(e)=>
         {
             e.preventDefault();
             const{name,seatNo,email}=this.state;
-            //console.log(this.params)
+           console.log(this.params)
             console.log(name + seatNo + email)
-            axios.post('http://localhost:8080/bookticket/'+this.props.match.params.id+'/'+seatNo
-            +'/'+email+'/'+name)
-            .then((result) => {
-                if(result.status===200)
-                {
-                 
-                    this.setState({
-                        isBooked:true
-                    });
-                    console.log(this.state.isBooked);
-                }
-                else if(result.status===500)
-                {
-                    this.setState({
-                        isBooked:false
-                    });
-                }
-                else
-                {
+            const id=this.props.match.params.id;
+           //  Axios.post('http://localhost:8080/bookticket/'+this.props.match.params.id+'/'+seatNo
+             //+'/'+email+'/'+name')
+             //.then((result) => {
+               
+               // if(result.status===200)
+                // {
+                 //  console.log("nenu ravatledu endhuloki")
+                 //this.setState({
+        //                 isBooked:true
+        //             });
+        //             console.log(this.state.isBooked);
+        //         }
+        //         // else if(result.status===500)
+        //         // {
+        //         //     this.setState({
+        //         //         isBooked:false
+        //         //     });
+        //         // }
+        //         // else
+        //         // {
                     
-                }
+        //         // }
               
 
+const url='http://localhost:8080/bookticket/'+id+'/'+seatNo+'/'+email+'/'+name+'';
+      fetch(url, {method: 'POST'
+      }).then(res =>{
+          
+        if(res.status===200)
+        {
+            this.setState({
+                                isBooked:true
+                             });
+                   //          this.props.history.push('/')
+
+        }
+        else if(res.status===500||404||400)
+        {
+            this.setState({
+                isBooked:false
+             });
+        }
         });
+        
+        
          
     }
     render()

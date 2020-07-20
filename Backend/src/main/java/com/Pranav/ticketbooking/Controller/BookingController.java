@@ -41,7 +41,7 @@ public class BookingController {
     public ResponseEntity<String> bookTicket(@PathVariable long mid,@PathVariable int seatNo,
                                              @PathVariable  String email,@PathVariable String name)
     {
-        Optional<Movie> checkMovie= Optional.ofNullable(newService.findMovie((mid));
+        Optional<Movie> checkMovie= Optional.ofNullable(newService.findMovie((mid)));
        if(!checkMovie.isPresent())
        {
            return new ResponseEntity<>("movie is not available at this time",HttpStatus.BAD_REQUEST);
@@ -54,6 +54,7 @@ public class BookingController {
          }
          if(newService.ticketsBookedinNo(mid)>20)
            {
+
                return new ResponseEntity<>("sorry its HouseFull",HttpStatus.BAD_REQUEST);
            }
 

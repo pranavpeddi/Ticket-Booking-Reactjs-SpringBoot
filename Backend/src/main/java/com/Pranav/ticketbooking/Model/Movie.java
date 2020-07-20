@@ -15,7 +15,42 @@ public class Movie {
     @Column(unique = true)
     private String movieName;
     private String movieRunningTime;
+    private String director;
+    private String hero;
+    private String heroin;
+    private String genre;
 
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getHero() {
+        return hero;
+    }
+
+    public void setHero(String hero) {
+        this.hero = hero;
+    }
+
+    public String getHeroin() {
+        return heroin;
+    }
+
+    public void setHeroin(String heroin) {
+        this.heroin = heroin;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 
     @OneToMany(mappedBy = "movie",cascade = {CascadeType.ALL,CascadeType.REMOVE},fetch = FetchType.LAZY)
 

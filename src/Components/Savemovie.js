@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios'
-import { Link } from 'react-router-dom';
+
 import {Form,Button,Container,} from 'react-bootstrap'
 import NavigationBar     from './NavigationBar';
 
@@ -10,7 +10,11 @@ class Savemovie extends React.Component{
         super();
         this.state={
          movieName:'',
-         movieRunningTime:''
+         movieRunningTime:'',
+         hero:'',
+         heroin:'',
+         director:'',
+         genre:''
         };
     }
 
@@ -23,9 +27,9 @@ class Savemovie extends React.Component{
     onSubmit=(e)=>{
         e.preventDefault();
 
-        const{movieName,movieRunningTime}=this.state
+        const{movieName,movieRunningTime,hero,heroin,director,genre}=this.state
         console.log(movieName + ":"+ movieRunningTime)
-        Axios.post('http://localhost:8080/saveMovie',{movieName,movieRunningTime})
+        Axios.post('http://localhost:8080/saveMovie',{movieName,movieRunningTime,hero,heroin,director,genre})
         .then((res)=>{
             if(res.status===200)
             {
@@ -36,7 +40,7 @@ class Savemovie extends React.Component{
     }
 
     render(){
-        const {movieName,movieRunningTime}=this.state;
+        const {movieName,movieRunningTime,hero,heroin,director,genre}=this.state;
         console.log(movieName+":"+movieRunningTime)
         return(
               
@@ -52,8 +56,32 @@ class Savemovie extends React.Component{
     </Form.Group>  
     
       <Form.Group controlId="formBasicEmail">
+      <Form.Label>Heroin:</Form.Label>
+      <Form.Control type="text" placeholder="Enter Heroin name" name="heroin" value={heroin} onChange={this.onChange}/>
+       
+    </Form.Group>  
+
+    <Form.Group controlId="formBasicEmail">
+      <Form.Label>Hero:</Form.Label>
+      <Form.Control type="text" placeholder="Enter Hero Name:" name="hero" value={hero} onChange={this.onChange}/>
+       
+    </Form.Group>  
+
+
+    <Form.Group controlId="formBasicEmail">
       <Form.Label>Movie Running Time:</Form.Label>
       <Form.Control type="text" placeholder="Enter MovieRunningTime" name="movieRunningTime" value={movieRunningTime} onChange={this.onChange}/>
+       
+    </Form.Group>  
+
+    <Form.Group controlId="formBasicEmail">
+      <Form.Label>Director :</Form.Label>
+      <Form.Control type="text" placeholder="Enter director name" name="director" value={director} onChange={this.onChange}/>
+       
+    </Form.Group>  
+    <Form.Group controlId="formBasicEmail">
+      <Form.Label>Genre :</Form.Label>
+      <Form.Control type="text" placeholder="Enter Genre" name="genre" value={genre} onChange={this.onChange}/>
        
     </Form.Group>  
     <Button variant="dark" type="submit">Save Movie</Button>

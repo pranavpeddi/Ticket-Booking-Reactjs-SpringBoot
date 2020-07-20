@@ -15,7 +15,7 @@ public interface MovieRepository extends CrudRepository<Movie,Long> {
 
     Movie findById(long id);
 
-    @Query(value = "select   m_id,movie_name, movie_running_time from Movie ",nativeQuery = true)
+    @Query(value = "select   m_id,movie_name, movie_running_time,hero,heroin,director,genre from Movie ",nativeQuery = true)
     List<Map<String,Object>> getMovieRunning();
 }
 

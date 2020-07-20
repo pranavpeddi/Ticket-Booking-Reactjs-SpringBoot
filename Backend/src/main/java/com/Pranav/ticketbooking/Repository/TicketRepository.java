@@ -15,6 +15,6 @@ public interface TicketRepository extends CrudRepository<Ticket,Long> {
     Ticket findBySeatNo(int no);
 
     @Query(value = "select seat_no" +
-            " from Ticket where movie_m_id=?1",nativeQuery = true)
+            " from Ticket  where movie_m_id=?1 ORDER BY seat_no",nativeQuery = true)
     List<Map<String,Object>> getTicketByMovie_MId(long movie_id);
 }
